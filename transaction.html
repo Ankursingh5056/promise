@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   
+    <title>phone pay</title>
+</head>
+<body>
+    <h3 id="display">Payment Status</h3>
+    <input type="number" id="input">
+    <button id="button">payMoney</button>
+    
+</body>
+<script>
+    let input=document.querySelector("#input")
+    let button=document.querySelector("#button")
+    let display=document.querySelector("#display")
+    button.addEventListener("click",()=>{
+        let trans=istrue_isfalse();
+        status("process")
+        new Promise(function(resolve,reject){
+            setTimeout(function(){
+                if(trans===true){
+                    resolve()
+                }
+                else{
+                    reject()
+                }
+            },1000)
+        }).then(function(){
+            status("resolve")
+            console.log("successful")
+        }).catch(function(){
+            status("reject")
+            console.log("transaction failed")
+        })
+    })
+    function status(str){
+        display.textContent=""
+        switch (str){
+            case "resolve":
+                display.textContent= "Payment successful"
+                display.style.color = "green"
+
+                break;
+            case "reject":
+                display.textContent="Payment failed"
+                display.style.color = "red"
+                break;
+
+            case "process":
+                display.textContent="Processing"
+                break;
+
+            default: 
+                alert("Enter Amount")
+                break;
+
+
+        }
+    }
+        function istrue_isfalse(){
+            if(input.value===""){
+                return false;
+            }
+            else{
+                return true;
+            }
+
+        }
+        
+    
+</script>
+</html>
+
+
